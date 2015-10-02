@@ -16,6 +16,7 @@ require([
     'tree/js/terminallist',
     'tree/js/newnotebook',
     'auth/js/loginwidget',
+    'tree/js/treereadme',
     // only loaded, not used:
     'jqueryui',
     'bootstrap',
@@ -34,13 +35,14 @@ require([
     kernellist,
     terminallist,
     newnotebook,
-    loginwidget){
+    loginwidget,
+    readme){
     "use strict";
 
     IPython.NotebookList = notebooklist.NotebookList;
 
     page = new page.Page();
-    
+
     var common_options = {
         base_url: utils.get_body_data("baseUrl"),
         notebook_path: utils.get_body_data("notebookPath"),
@@ -65,7 +67,14 @@ require([
     var kernel_list = new kernellist.KernelList('#running_list',  $.extend({
         session_list:  session_list},
         common_options));
-    
+
+    // THIS IS MY STUFF
+    var readme = new readme.ReadMe('#readme', $.extend({
+        contents: contents},
+        common_options));
+
+
+
     var terminal_list;
     if (utils.get_body_data("terminalsAvailable") === "True") {
         terminal_list = new terminallist.TerminalList('#terminal_list', common_options);
@@ -144,19 +153,20 @@ require([
     IPython.kernel_list = kernel_list;
     IPython.login_widget = login_widget;
     IPython.new_notebook_widget = new_buttons;
+    IPython.readme = readme;
 
     events.trigger('app_initialized.DashboardApp');
     utils.load_extensions_from_config(cfg);
     utils.load_extensions_from_config(common_config);
-    
+
     // bound the upload method to the on change of the file select list
     $("#alternate_upload").change(function (event){
         notebook_list.handleFilesUpload(event,'form');
     });
-    
+
     // set hash on tab click
     $("#tabs").find("a").click(function(e) {
-        // Prevent the document from jumping when the active tab is changed to a 
+        // Prevent the document from jumping when the active tab is changed to a
         // tab that has a lot of content.
         e.preventDefault();
 
@@ -169,7 +179,7 @@ require([
             window.location.hash = hash;
         }
     });
-    
+
     // load tab if url hash
     if (window.location.hash) {
         $("#tabs").find("a[href=" + window.location.hash + "]").click();
