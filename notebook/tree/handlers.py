@@ -5,11 +5,11 @@
 
 from tornado import web
 import os
-from ..base.handlers import IPythonHandler, path_regex
-from ..utils import url_path_join, url_escape
+from jupyter_server.base.handlers import JupyterHandler, path_regex
+from jupyter_server.utils import url_path_join, url_escape
 
 
-class TreeHandler(IPythonHandler):
+class TreeHandler(JupyterHandler):
     """Render the tree view, listing notebooks, etc."""
 
     def generate_breadcrumbs(self, path):
@@ -38,7 +38,7 @@ class TreeHandler(IPythonHandler):
     def get(self, path=''):
         path = path.strip('/')
         cm = self.contents_manager
-        
+
         if cm.dir_exists(path=path):
             if cm.is_hidden(path) and not cm.allow_hidden:
                 self.log.info("Refusing to serve hidden directory, via 404 Error")

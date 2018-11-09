@@ -8,11 +8,11 @@ import os
 from tornado import web
 HTTPError = web.HTTPError
 
-from ..base.handlers import (
-    IPythonHandler, FilesRedirectHandler, path_regex,
+from jupyter_server.base.handlers import (
+    JupyterHandler, FilesRedirectHandler, path_regex,
 )
-from ..utils import url_escape
-from ..transutils import _
+from jupyter_server.utils import url_escape
+from jupyter_server.transutils import _
 
 
 def get_custom_frontend_exporters():
@@ -28,7 +28,7 @@ def get_custom_frontend_exporters():
             yield ExporterInfo(name, display)
 
 
-class NotebookHandler(IPythonHandler):
+class NotebookHandler(JupyterHandler):
 
     @web.authenticated
     def get(self, path):
@@ -50,6 +50,7 @@ class NotebookHandler(IPythonHandler):
             # not a notebook, redirect to files
             return FilesRedirectHandler.redirect_to_files(self, path)
         name = path.rsplit('/', 1)[-1]
+
         self.write(self.render_template('notebook.html',
             notebook_path=path,
             notebook_name=name,
