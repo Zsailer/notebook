@@ -4,4 +4,4 @@ from jupyter_server.edit.handlers import (
     default_handlers
 )
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

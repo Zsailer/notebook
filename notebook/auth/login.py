@@ -1,5 +1,4 @@
-from notebook.jupyter_server_shim
+from notebook.jupyter_server_shim import jupyter_server_shim
 from jupyter_server.auth.login import LoginHandler
 
-
-jupyter_server_shim(__file__)
+jupyter_server_shim()

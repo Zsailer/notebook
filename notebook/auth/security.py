@@ -8,5 +8,5 @@ from jupyter_server.auth.security import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()
 

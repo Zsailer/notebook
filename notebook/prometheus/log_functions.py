@@ -3,4 +3,4 @@ from notebook.jupyter_server_shim import jupyter_server_shim
 from jupyter_server.prometheus.metrics import HTTP_REQUEST_DURATION_SECONDS
 from jupyter_server.prometheus.log_functions import prometheus_log_method
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

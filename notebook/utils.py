@@ -19,8 +19,11 @@ from jupyter_server.utils import (
     _check_pid_win32,
     _check_pid_posix,
     check_pid,
-    maybe_future
+    maybe_future,
+    urljoin,
+    urlparse,
+    pathname2url
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

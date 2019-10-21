@@ -1,14 +1,20 @@
-from jupyter_server.transutils import _
+import inspect
+import warnings
 
-def jupyter_server_shim(src, dst=None):
+
+def jupyter_server_shim(shim=None):
     """Central warning message for all notebook-->jupyter_server shims"""
-    if dst is None:
-        dst = src.replace('notebook', 'jupyter_server', 1)
+    # Get source name of this shim.
+    previous_frame = inspect.currentframe().f_back
+    module = inspect.getmodule(previous_frame).__name__
 
-    msg = _("""
+    if shim is None:
+        shim = module.replace('notebook', 'jupyter_server', 1)
+
+    msg = """
     {} has been moved to {}. 
     
     This API will be dropped in the next major
     release of jupyter/notebook. 
-    """.format(src, dst))
-    raise FutureWarning(msg)
+    """.format(module, shim)
+    warnings.warn(msg, DeprecationWarning)

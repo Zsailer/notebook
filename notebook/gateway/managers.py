@@ -8,4 +8,4 @@ from jupyter_server.gateway.managers import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

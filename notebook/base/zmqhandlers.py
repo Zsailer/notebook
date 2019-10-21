@@ -9,4 +9,4 @@ from jupyter_server.base.zmqhandlers import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

@@ -21,4 +21,4 @@ from jupyter_server.base.handlers import (
     default_handlers
 )
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

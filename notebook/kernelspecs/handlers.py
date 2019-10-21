@@ -5,4 +5,4 @@ from jupyter_server.kernelspecs.handlers import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

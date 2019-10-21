@@ -6,4 +6,4 @@ from jupyter_server.config_manager import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()

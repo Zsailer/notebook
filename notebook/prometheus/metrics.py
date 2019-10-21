@@ -6,4 +6,4 @@ from jupyter_server.prometheus.metrics import (
 )
 
 
-jupyter_server_shim(__file__)
+jupyter_server_shim()
