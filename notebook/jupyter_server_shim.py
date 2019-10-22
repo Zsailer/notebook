@@ -1,5 +1,18 @@
 import inspect
 import warnings
+import textwrap
+
+
+def shim_message(module, shimmed_module):
+    msg = textwrap.dedent("""
+    {} has been moved to {}. 
+    
+    This API will be dropped in the next major
+    release of jupyter/notebook. 
+    """.format(module, shimmed_module))
+    # Strip leading+ending space.
+    msg = msg.rstrip().lstrip()
+    return msg
 
 
 def jupyter_server_shim(shim=None):
@@ -11,10 +24,5 @@ def jupyter_server_shim(shim=None):
     if shim is None:
         shim = module.replace('notebook', 'jupyter_server', 1)
 
-    msg = """
-    {} has been moved to {}. 
-    
-    This API will be dropped in the next major
-    release of jupyter/notebook. 
-    """.format(module, shim)
+    msg = shim_message(module, shim)
     warnings.warn(msg, DeprecationWarning)

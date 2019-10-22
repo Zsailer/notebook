@@ -39,11 +39,6 @@ from jinja2 import Environment, FileSystemLoader
 
 from jupyter_server.transutils import trans, _
 
-# Install the pyzmq ioloop. This has to be done before anything else from
-# tornado is imported.
-from zmq.eventloop import ioloop
-ioloop.install()
-
 # check for tornado 3.1.0
 try:
     import tornado

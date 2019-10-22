@@ -1,5 +1,38 @@
 from notebook.jupyter_server_shim import jupyter_server_shim
 from jupyter_server.base.handlers import (
+    datetime,
+    functools,
+    ipaddress,
+    json,
+    mimetypes,
+    os,
+    re,
+    sys,
+    traceback,
+    types,
+    warnings,
+    responses,
+    Morsel,
+    urlparse,
+    TemplateNotFound,
+    web,
+    gen,
+    escape,
+    httputil,
+    app_log,
+    prometheus_client,
+    get_sys_info,
+    Application,
+    filefind,
+    string_types,
+    utcnow,
+    combine_translations,
+    is_hidden,
+    url_path_join,
+    url_is_absolute,
+    url_escape,
+    csp_report_uri,
+    # Defined in this module.
     non_alphanum,
     _sys_info_cache,
     json_sys_info,
@@ -20,5 +53,7 @@ from jupyter_server.base.handlers import (
     path_regex,
     default_handlers
 )
+
+import notebook
 
 jupyter_server_shim()

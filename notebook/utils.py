@@ -1,5 +1,22 @@
 from notebook.jupyter_server_shim import jupyter_server_shim
 from jupyter_server.utils import (
+    print_function,
+    asyncio,
+    ctypes,
+    errno,
+    inspect,
+    os,
+    stat,
+    sys,
+    LooseVersion,
+    quote,
+    unquote,
+    urlparse,
+    urljoin,
+    pathname2url,
+    TornadoFuture,
+    gen,
+    # Defined in this module.
     UF_HIDDEN,
     exists,
     url_path_join,
@@ -25,5 +42,7 @@ from jupyter_server.utils import (
     pathname2url
 )
 
+import concurrent.futures
+from ipython_genutils import py3compat
 
 jupyter_server_shim()
