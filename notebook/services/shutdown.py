@@ -1,15 +1,8 @@
-"""HTTP handler to shut down the notebook server.
-"""
-from tornado import web, ioloop
-from notebook.base.handlers import IPythonHandler
+from notebook.jupyter_server_shim import jupyter_server_shim
 
-class ShutdownHandler(IPythonHandler):
-    @web.authenticated
-    def post(self):
-        self.log.info("Shutting down on /api/shutdown request.")
-        ioloop.IOLoop.current().stop()
+jupyter_server_shim()
 
-
-default_handlers = [
-    (r"/api/shutdown", ShutdownHandler),
-]
+from jupyter_server.services.shutdown import (
+    ShutdownHandler,
+    default_handlers
+)
