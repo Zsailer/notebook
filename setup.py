@@ -111,7 +111,8 @@ for more information.
         'ipykernel', # bless IPython kernel for now
         'Send2Trash',
         'terminado>=0.8.1',
-        'prometheus_client'
+        'prometheus_client',
+        'jupyter_server'
     ],
     extras_require = {
         'test': ['nose', 'coverage', 'requests', 'nose_warnings_filters',
@@ -123,7 +124,6 @@ for more information.
         'console_scripts': [
             'jupyter-notebook = notebook.notebookapp:main',
             'jupyter-nbextension = notebook.nbextensions:main',
-            'jupyter-serverextension = notebook.serverextensions:main',
             'jupyter-bundlerextension = notebook.bundler.bundlerextensions:main',
         ]
     },

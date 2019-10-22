@@ -8,11 +8,11 @@ import os
 from tornado import web
 HTTPError = web.HTTPError
 
-from ..base.handlers import (
-    IPythonHandler, FilesRedirectHandler, path_regex,
+from jupyter_server.base.handlers import (
+    FilesRedirectHandler, path_regex,
 )
-from ..utils import url_escape
-from ..transutils import _
+from jupyter_server.utils import url_escape
+from jupyter_server.transutils import _
 
 
 from jupyter_server.extension.handler import ExtensionHandler
