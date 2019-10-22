@@ -15,6 +15,9 @@ from ..utils import url_escape
 from ..transutils import _
 
 
+from jupyter_server.extension.handler import ExtensionHandler
+
+
 def get_frontend_exporters():
     from nbconvert.exporters.base import get_export_names, get_exporter
 
@@ -65,7 +68,7 @@ def get_frontend_exporters():
     return sorted(frontend_exporters)
 
 
-class NotebookHandler(IPythonHandler):
+class NotebookHandler(ExtensionHandler):
 
     @web.authenticated
     def get(self, path):
