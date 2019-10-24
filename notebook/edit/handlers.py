@@ -1,29 +1,12 @@
-#encoding: utf-8
-"""Tornado handlers for the terminal emulator."""
+from notebook.jupyter_server_shim import jupyter_server_shim
+from jupyter_server.edit.handlers import (
+    web,
+    JupyterHandler as IPythonHandler,
+    path_regex,
+    url_escape,
+    # Defined in this module.
+    EditorHandler,
+    default_handlers
+)
 
-# Copyright (c) Jupyter Development Team.
-# Distributed under the terms of the Modified BSD License.
-
-from tornado import web
-from ..base.handlers import IPythonHandler, path_regex
-from ..utils import url_escape
-
-class EditorHandler(IPythonHandler):
-    """Render the text editor interface."""
-    @web.authenticated
-    def get(self, path):
-        path = path.strip('/')
-        if not self.contents_manager.file_exists(path):
-            raise web.HTTPError(404, u'File does not exist: %s' % path)
-
-        basename = path.rsplit('/', 1)[-1]
-        self.write(self.render_template('edit.html',
-            file_path=url_escape(path),
-            basename=basename,
-            page_title=basename + " (editing)",
-            )
-        )
-
-default_handlers = [
-    (r"/edit%s" % path_regex, EditorHandler),
-]
+jupyter_server_shim()

@@ -1,4 +1,3 @@
-"""
-A package containing all the functionality and
-configuration connected to the prometheus metrics
-"""
+from notebook.jupyter_server_shim import jupyter_server_shim
+
+jupyter_server_shim()
