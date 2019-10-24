@@ -1,6 +1,6 @@
 # Jupyter Notebook as a server extension
 
-**Warning** Only use this extension in a virtual environment. This extension will collide with other Jupyter Notebook installations. Only install this in an isolated environment **without** jupyter/notebook. 
+**Warning**: Only use this extension in a virtual environment. This extension will collide with other Jupyter Notebook installations. Only install this in an isolated environment *without* jupyter/notebook. 
 
 ## Installation
 
@@ -18,4 +18,3 @@ cd nbclassic
 pip install .
 cd ..
 ```
-
