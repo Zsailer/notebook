@@ -313,6 +313,18 @@ class ZMQChannelsHandler(AuthenticatedZMQStreamHandler):
             stream = self.channels[channel]
             self.session.send(stream, msg)
 
+            # If message is sent successfully, record the event.
+            if channel == 'shell':
+
+                self.eventlog.record_event(
+                    schema_name='eventlogging.jupyter.org/notebook/websocketmessaging-actions',
+                    version=1,
+                    event={
+                        'action': 'on_message',
+                        'msg': msg
+                    }
+                )
+
     def _on_zmq_reply(self, stream, msg_list):
         idents, fed_msg_list = self.session.feed_identities(msg_list)
         msg = self.session.deserialize(fed_msg_list)
@@ -421,6 +433,17 @@ class ZMQChannelsHandler(AuthenticatedZMQStreamHandler):
                 self._iopub_window_byte_queue.pop(-1)
                 return
         super(ZMQChannelsHandler, self)._on_zmq_reply(stream, msg)
+
+        if channel == 'shell':
+            # If message is sent successfully, record the event.
+            self.eventlog.record_event(
+                schema_name='eventlogging.jupyter.org/notebook/websocketmessaging-actions',
+                version=1,
+                event={
+                    'action': 'on_reply',
+                    'msg': msg
+                }
+            )
 
     def close(self):
         super(ZMQChannelsHandler, self).close()

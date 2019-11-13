@@ -1,0 +1,36 @@
+"$id": eventlogging.jupyter.org/notebook/websocketmessaging-actions
+version: 1
+title: Websocket Messaging activities
+description: |
+    Record messages passed across a websocket
+type: object
+required:
+- action
+- msg
+properties:
+  action:
+    enum:
+    - open
+    - on_message
+    - on_reply
+    - close
+    description: |
+        Messages sent by websockets.
+
+        This is a required field.
+
+        Possible values:
+
+        1. open - websocket connection opened.
+        
+        2. on_message - message was sent from client to server.
+
+        3. on_reply - reply message was sent from server to client.
+
+        4. close - websocket connection is closed.
+  msg:
+    type: object
+    description: |
+        Message stream.
+
+        This field is not required.
