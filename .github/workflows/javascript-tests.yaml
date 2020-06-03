@@ -20,15 +20,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         architecture: 'x64'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '6.9.2'
     - name: Install development environment
       run: |
         pip install --upgrade pip
         pip install --upgrade setuptools wheel nose coverage codecov
-        nvm install 6.9.2
-        nvm use 6.9.2
-        node --version
-        npm --version
-        npm upgrade -g npm
         npm install
     - name: Install Javascript dependencies.
       run: |
