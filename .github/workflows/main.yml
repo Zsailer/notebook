@@ -10,11 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, macos, windows]
-        python-version: [ '3.6', '3.7', '3.8', '3.9', 'pypy3' ]
-        exclude:
-        - os: windows
-          python-version: pypy3
+        os: [ubuntu]
+        python-version: [ '3.6' ]
     steps:
     - name: Checkout
       uses: actions/checkout@v1
@@ -47,7 +44,7 @@ jobs:
         pip check
     - name: Run the tests
       run: |
-        pytest -vv --cov notebook --cov-branch --cov-report term-missing:skip-covered
+        pytest -vv --cov notebook --cov-branch --cov-report term-missing:skip-covered --ignore-glob=notebook/tests/selenium/*
     - name: Coverage
       run: |
         codecov
