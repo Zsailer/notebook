@@ -1,4 +1,4 @@
-name: Jupyter Notebook Tests
+name: Python Tests
 on:
   push:
     branches: '*'
@@ -42,9 +42,12 @@ jobs:
       run: |
         pip freeze
         pip check
-    - name: Run the tests
+    - name: Run Server-side tests
       run: |
         pytest -vv --cov notebook --cov-branch --cov-report term-missing:skip-covered --ignore-glob=notebook/tests/selenium/*
+    - name: Run frontend test
+      run: |
+        python -m notebook.jstest
     - name: Coverage
       run: |
         codecov
