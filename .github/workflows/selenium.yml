@@ -10,25 +10,20 @@ jobs:
     matrix:
       os: [ubuntu]
       python-version: [ '3.6' ]
-
   steps:
     - name: Checkout
       uses: actions/checkout@v2
-
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python }}
-
     - name: Set up Node
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-
     - name: Install JS
       run: |
         npm install
-
     - name: Install Selenium dependencies
       run: |
         pip install --upgrade selenium pytest
@@ -36,7 +31,6 @@ jobs:
         mkdir geckodriver
         tar -xzf geckodriver-v0.19.1-linux64.tar.gz -C geckodriver
         echo $PWD/geckodriver >> $GITHUB_ENV
-
     - name: Run Tests
       run: |
         pytest -sv notebook/tests/selenium
