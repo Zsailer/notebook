@@ -79,3 +79,28 @@ script:
         pytest --nbval --current-env docs || EXIT_STATUS=$?
         exit $EXIT_STATUS
       fi
+
+
+matrix:
+    include:
+        - python: 3.6
+          env:
+          - GROUP=selenium
+          - JUPYTER_TEST_BROWSER=firefox
+          - MOZ_HEADLESS=1
+          addons:
+            firefox: 57.0
+        - python: 3.5
+          env: GROUP=python
+        - python: 3.7
+          dist: xenial
+          env: GROUP=python
+        - python: 3.8
+          env: GROUP=python
+        - python: 3.9-dev
+          env: GROUP=python
+        - python: 3.6
+          env: GROUP=docs
+
+after_success:
+    - codecov
