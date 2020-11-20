@@ -1,4 +1,4 @@
-name: Python Tests
+name: Docs Tests
 on:
   push:
     branches: '*'
@@ -38,12 +38,12 @@ jobs:
     - name: Install the Python dependencies
       run: |
         pip install -e .[test] codecov
-        pip install -r docs/docs-requirements.txt
+        pip install -r docs/doc-requirements.txt
     - name: List installed packages
       run: |
         pip freeze
         pip check
-    - name: Run Server-side tests
+    - name: Run tests on documentation
       run: |
         EXIT_STATUS=0
         make -C docs/ html || EXIT_STATUS=$?
