@@ -38,13 +38,15 @@ jobs:
     - name: Install the Python dependencies
       run: |
         pip install -e .[test] codecov
+        pip install -r docs/docs-requirements.txt
     - name: List installed packages
       run: |
         pip freeze
         pip check
     - name: Run Server-side tests
       run: |
-        pytest -vv --cov notebook --cov-branch --cov-report term-missing:skip-covered --ignore-glob=notebook/tests/selenium/*
-    - name: Coverage
-      run: |
-        codecov
+        EXIT_STATUS=0
+        make -C docs/ html || EXIT_STATUS=$?
+        make -C docs/ linkcheck || EXIT_STATUS=$?
+        pytest --nbval --current-env docs || EXIT_STATUS=$?
+        exit $EXIT_STATUS
