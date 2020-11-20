@@ -34,6 +34,7 @@ jobs:
         python -m pip install -U pip setuptools wheel
         pip install --upgrade selenium
         pip install pytest
+        pip install .[test]
 
     - name: Install Selenium dependency
       run: |
