@@ -7,7 +7,7 @@ jobs:
     name: JS
     strategy:
       matrix:
-        group: [js/notebook, js/base, js/services]
+        group: [notebook, base, services]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
